@@ -1,6 +1,7 @@
 package com.classes.DAO;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,15 +12,17 @@ import com.classes.DTO.TransferenciaDTO;
 
 public class TransferenciaDAO {
 
-	/*final String NOMEDATABELA = "transferencia";
+	final String NOMEDATABELA = "transferencia";
 	
 	public boolean inserir(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "INSERT INTO " + NOMEDATABELA + " (nome, cpf) VALUES (?, ?);";
+			String sql = "INSERT INTO " + NOMEDATABELA + " (valor, data, contaPaga, contaRecebe) VALUES (?, ?, ?, ?);";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, transferencia.getNome());
-			ps.setString(2, transferencia.getCpf());
+			ps.setDouble(1, transferencia.getValor());
+			ps.setDate(2, transferencia.getData()); //ver para mudar a variável da DATA
+			ps.setInt(3, transferencia.getContaPaga().getNumConta());
+			ps.setInt(4, transferencia.getContaRecebe().getNumConta());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -29,13 +32,13 @@ public class TransferenciaDAO {
 			return false;
 		}
 	}
-	public boolean alterarNome(TransferenciaDTO transferencia) {
+	public boolean alterarValor(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE idTransferencia = ?;";
+			String sql = "UPDATE " + NOMEDATABELA + " SET valor = ? WHERE idTransferencia = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, transferencia.getNome());
-			ps.setString(2, transferencia.getCpf());
+			ps.setDouble(1, transferencia.getValor());
+			ps.setInt(2, transferencia.getIdTransferencia());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -60,18 +63,20 @@ public class TransferenciaDAO {
 			return false;
 		}
 	}
-	public TransferenciaDTO procurarPorCodigo(TransferenciaDTO transferencia) {
+	public TransferenciaDTO procurarPorIdTransferencia(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE idTransferencia = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, transferencia.getIdtransferencia());
+			ps.setInt(1, transferencia.getIdTransferencia());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				TransferenciaDTO obj = new TransferenciaDTO();
 				obj.setIdTransferencia(rs.getInt(1));
-				obj.setNome(rs.getString(2));
-				obj.setCpf(rs.getString(3));
+				obj.setValor(rs.getInt(2));
+				obj.setData(rs.getDate(3));
+				obj.getContaPaga().setNumConta((rs.getInt(4)));
+				obj.getContaRecebe().setNumConta((rs.getInt(5)));
 				ps.close();
 				rs.close();
 				conn.close();
@@ -87,17 +92,20 @@ public class TransferenciaDAO {
 			return null;
 		}
 	}
-	public TransferenciaDTO procurarPorNome(TransferenciaDTO transferencia) {
+	public TransferenciaDTO procurarPorContaPaga(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE nome = ?;";
+			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE contaPaga = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, transferencia.getNome());
+			ps.setInt(1, transferencia.getContaPaga().getNumConta());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				TransferenciaDTO obj = new TransferenciaDTO();
 				obj.setIdTransferencia(rs.getInt(1));
-				obj.setNome(rs.getString(2));
+				obj.setValor(rs.getInt(2));
+				obj.setData(rs.getDate(3));
+				obj.getContaPaga().setNumConta((rs.getInt(4)));
+				obj.getContaRecebe().setNumConta((rs.getInt(5)));
 				ps.close();
 				rs.close();
 				conn.close();
@@ -112,17 +120,48 @@ public class TransferenciaDAO {
 			return null;
 		}
 	}
-	public TransferenciaDTO procurarPorCpf(TransferenciaDTO transferencia) {
+	public TransferenciaDTO procurarPorContaRecebe(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE contaRecebe = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, transferencia.getCpf());
+			ps.setInt(1, transferencia.getContaRecebe().getNumConta());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				TransferenciaDTO obj = new TransferenciaDTO();
 				obj.setIdTransferencia(rs.getInt(1));
-				obj.setCpf(rs.getString(2));
+				obj.setValor(rs.getInt(2));
+				obj.setData(rs.getDate(3));
+				obj.getContaPaga().setNumConta((rs.getInt(4)));
+				obj.getContaRecebe().setNumConta((rs.getInt(5)));
+				ps.close();
+				rs.close();
+				conn.close();
+				return obj;
+			} else {
+				ps.close();
+				rs.close();
+				conn.close();
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public TransferenciaDTO procurarPorData(TransferenciaDTO transferencia) {
+		try {
+			Connection conn = Conexao.conectar();
+			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE data = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, transferencia.getData());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				TransferenciaDTO obj = new TransferenciaDTO();
+				obj.setIdTransferencia(rs.getInt(1));
+				obj.setValor(rs.getInt(2));
+				obj.setData(rs.getDate(3));
+				obj.getContaPaga().setNumConta((rs.getInt(4)));
+				obj.getContaRecebe().setNumConta((rs.getInt(5)));
 				ps.close();
 				rs.close();
 				conn.close();
@@ -140,9 +179,9 @@ public class TransferenciaDAO {
 	public boolean existe(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE idTransferencia = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, transferencia.getCpf());
+			ps.setInt(1, transferencia.getIdTransferencia());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				ps.close();
@@ -175,8 +214,10 @@ public class TransferenciaDAO {
 			while (rs.next()) {
 				TransferenciaDTO obj = new TransferenciaDTO();
 				obj.setIdTransferencia(rs.getInt(1));
-				obj.setNome(rs.getString(2));
-				obj.setCpf(rs.getString(2));
+				obj.setValor(rs.getInt(2));
+				obj.setData(rs.getDate(3));
+				obj.getContaPaga().setNumConta((rs.getInt(4)));
+				obj.getContaRecebe().setNumConta((rs.getInt(5)));
 				listObj.add(obj);
 			}
 			return listObj;
@@ -184,5 +225,5 @@ public class TransferenciaDAO {
 			e.printStackTrace();
 			return null;
 		}
-	}*/
+	}
 }

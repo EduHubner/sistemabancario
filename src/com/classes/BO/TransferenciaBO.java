@@ -7,32 +7,36 @@ import com.classes.DTO.TransferenciaDTO;
 
 public class TransferenciaBO {
 
-   /* public boolean inserir(TransferenciaDTO transferencia){
+   public boolean inserir(TransferenciaDTO transferencia){
         if (existe(transferencia) != true) {
         	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
             return transferenciaDAO.inserir(transferencia);
         }
         return false;
     }
-    public boolean alterar(TransferenciaDTO transferencia){
+    public boolean alterarValor(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
-        return transferenciaDAO.alterarNome(transferencia);
+        return transferenciaDAO.alterarValor(transferencia);
     }
     public boolean excluir(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
         return transferenciaDAO.excluir(transferencia);
     }
-    public UsuarioDTO procurarPorCodigo(TransferenciaDTO transferencia){
+    public TransferenciaDTO procurarPorIdTransferencia(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
-        return transferenciaDAO.procurarPorCodigo(transferencia);
+        return transferenciaDAO.procurarPorIdTransferencia(transferencia);
     }
-    public UsuarioDTO procurarPorDescricao(TransferenciaDTO transferencia){
+    public TransferenciaDTO procurarPorContaPaga(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
-        return transferenciaDAO.procurarPorNome(transferencia);
+        return transferenciaDAO.procurarPorContaPaga(transferencia);
     }
-    public UsuarioDTO procurarPorCpf(TransferenciaDTO transferencia){
+    public TransferenciaDTO procurarPorContaRecebe(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
-        return transferenciaDAO.procurarPorCpf(transferencia);
+        return transferenciaDAO.procurarPorContaRecebe(transferencia);
+    }
+    public TransferenciaDTO procurarPorData(TransferenciaDTO transferencia){
+    	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
+        return transferenciaDAO.procurarPorData(transferencia);
     }
     public boolean existe(TransferenciaDTO transferencia){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
@@ -41,5 +45,5 @@ public class TransferenciaBO {
     public List<TransferenciaDTO> pesquisarTodos(){
     	TransferenciaDAO transferenciaDAO = new TransferenciaDAO();
         return transferenciaDAO.pesquisarTodos();
-    }*/
+    }
 }

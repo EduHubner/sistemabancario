@@ -24,6 +24,18 @@ public class TransferenciaDTO {
 		
 	}
 	
+	public ContaDTO getContaPaga() {
+		return contaPaga;
+	}
+	public void setContaPaga(ContaDTO contaPaga) {
+		this.contaPaga = contaPaga;
+	}
+	public ContaDTO getContaRecebe() {
+		return contaRecebe;
+	}
+	public void setContaRecebe(ContaDTO contaRecebe) {
+		this.contaRecebe = contaRecebe;
+	}
 	public int getIdTransferencia() {
 		return idTransferencia;
 	}
@@ -60,15 +72,21 @@ public class TransferenciaDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Transferencia [idTransferencia=");
+		builder.append("TransferenciaDTO [idTransferencia=");
 		builder.append(idTransferencia);
 		builder.append(", data=");
 		builder.append(data);
 		builder.append(", valor=");
 		builder.append(valor);
+		builder.append(", contaPaga=");
+		builder.append(contaPaga);
+		builder.append(", contaRecebe=");
+		builder.append(contaRecebe);
 		builder.append("]");
 		return builder.toString();
 	}
+
+	
 	
 	
 	

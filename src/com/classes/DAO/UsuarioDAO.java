@@ -35,7 +35,7 @@ public class UsuarioDAO {
 			String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE idUsuario = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, usuario.getNome());
-			ps.setString(2, usuario.getCpf());
+			ps.setInt(2, usuario.getIdUsuario());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -176,7 +176,7 @@ public class UsuarioDAO {
 				UsuarioDTO obj = new UsuarioDTO();
 				obj.setIdUsuario(rs.getInt(1));
 				obj.setNome(rs.getString(2));
-				obj.setCpf(rs.getString(2));
+				obj.setCpf(rs.getString(3));
 				listObj.add(obj);
 			}
 			return listObj;
