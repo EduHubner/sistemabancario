@@ -22,7 +22,7 @@ public class Main {
 		
 		
 		
-		TransferenciaDTO trandas = new TransferenciaDTO(1000);
+		/*TransferenciaDTO trandas = new TransferenciaDTO(1000);
 		TransferenciaDTO t2 = new TransferenciaDTO(5000);
 		
 		trandas.Tranferir(conta1, conta2);
@@ -34,7 +34,7 @@ public class Main {
 		
 		System.out.println("\nTranferencias da Conta 1: \n" + conta1.Tranferencias);
 		
-		System.out.println(t2.getIdTransferencia());
+		System.out.println(t2.getIdTransferencia());*/
 		
 	}
 

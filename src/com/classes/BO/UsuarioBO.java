@@ -9,37 +9,37 @@ public class UsuarioBO {
 
     public boolean inserir(UsuarioDTO usuario){
         if (existe(usuario) != true) {
-        	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-            return UsuarioDAO.inserir(usuario);
+        	UsuarioDAO usuarioDAO = new UsuarioDAO();
+            return usuarioDAO.inserir(usuario);
         }
         return false;
     }
     public boolean alterar(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.alterarNome(usuario);
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.alterarNome(usuario);
     }
     public boolean excluir(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.excluir(usuario);
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.excluir(usuario);
     }
     public UsuarioDTO procurarPorCodigo(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.procurarPorCodigo(usuario);
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.procurarPorCodigo(usuario);
     }
-    public UsuarioDTO procurarPorDescricao(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.procurarPorNome(usuario);
+    public UsuarioDTO procurarPorNome(UsuarioDTO usuario){
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.procurarPorNome(usuario);
     }
     public UsuarioDTO procurarPorCpf(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.procurarPorCpf(usuario);
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.procurarPorCpf(usuario);
     }
     public boolean existe(UsuarioDTO usuario){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.existe(usuario);
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.existe(usuario);
     }
     public List<UsuarioDTO> pesquisarTodos(){
-    	UsuarioDAO UsuarioDAO = new UsuarioDAO();
-        return UsuarioDAO.pesquisarTodos();
+    	UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.pesquisarTodos();
     }
 }

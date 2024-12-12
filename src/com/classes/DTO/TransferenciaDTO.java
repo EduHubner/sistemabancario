@@ -7,16 +7,20 @@ public class TransferenciaDTO {
 	private int idTransferencia;
 	private LocalDate data;
 	private double valor;
+	private ContaDTO contaPaga;
+	private ContaDTO contaRecebe;
 	
 	public TransferenciaDTO() {
 		this.idTransferencia = (int) Math.random();
 		this.data = LocalDate.now();
 	}
 	
-	public TransferenciaDTO(double valor) {
+	public TransferenciaDTO(double valor, ContaDTO contaPaga, ContaDTO contaRecebe) {
 		this.idTransferencia = (int) Math.random();
 		this.data = LocalDate.now();
 		this.valor = valor;
+		this.contaPaga = contaPaga;
+		this.contaRecebe = contaRecebe;
 		
 	}
 	
@@ -39,12 +43,12 @@ public class TransferenciaDTO {
 		this.valor = valor;
 	}
 	
-	public void Tranferir(ContaDTO contaPaga, ContaDTO contaRecebe) {
+	public void Tranferir() {
 		
-		contaPaga.setSaldo(contaPaga.getSaldo() - this.valor);
-		contaRecebe.setSaldo(contaRecebe.getSaldo() + this.valor);
-		contaPaga.addTransferencia(this);
-		contaRecebe.addTransferencia(this);
+		this.contaPaga.setSaldo(contaPaga.getSaldo() - this.valor);
+		this.contaRecebe.setSaldo(contaRecebe.getSaldo() + this.valor);
+		this.contaPaga.addTransferencia(this);
+		this.contaRecebe.addTransferencia(this);
 
 	
 	}

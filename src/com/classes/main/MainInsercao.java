@@ -27,12 +27,12 @@ public class MainInsercao {
 		
 		
 		
-		/*UsuarioBO UsuarioBO = new UsuarioBO();
+		UsuarioBO UsuarioBO = new UsuarioBO();
 		UsuarioDTO usuario = new UsuarioDTO("Eduardo", "123.456.798-89");
 		if (UsuarioBO.inserir(usuario))
 			System.out.println("Inserido com Sucesso");
 		else
-			System.out.println("Erro ao Inserir");*/
+			System.out.println("Erro ao Inserir");
 		
 	}
 }
