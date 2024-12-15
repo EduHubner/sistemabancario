@@ -1,7 +1,6 @@
 package com.classes.DAO;
 
 import java.sql.Connection;
-import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class TransferenciaDAO {
 	public boolean inserir(TransferenciaDTO transferencia) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "INSERT INTO " + NOMEDATABELA + " (valor, data, contaPaga, contaRecebe) VALUES (?, ?, ?, ?);";
+			String sql = "INSERT INTO " + NOMEDATABELA + " (valor, dataTransferencia, contaPaga, contaRecebe) VALUES (?, ?, ?, ?);";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setDouble(1, transferencia.getValor());
 			ps.setDate(2, transferencia.getData()); //ver para mudar a variável da DATA
@@ -153,7 +152,7 @@ public class TransferenciaDAO {
 			Connection conn = Conexao.conectar();
 			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE data = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, transferencia.getData());
+			ps.setDate(1, transferencia.getData());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				TransferenciaDTO obj = new TransferenciaDTO();
