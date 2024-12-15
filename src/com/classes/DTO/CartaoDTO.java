@@ -4,10 +4,33 @@ import java.util.Date;
 
 public class CartaoDTO {
 
+	private int idCartao;
 	private int numCartao;
-	private int CVV;
+	private String tipo;
+	private int cvv;
 	private Date validade;
+	protected ContaDTO conta;
 	
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public int getIdCartao() {
+		return idCartao;
+	}
+	public void setIdCartao(int idCartao) {
+		this.idCartao = idCartao;
+	}
+	public ContaDTO getConta() {
+		return conta;
+	}
+	public void setConta(ContaDTO conta) {
+		this.conta = conta;
+	}
 	public int getNumCartao() {
 		return numCartao;
 	}
@@ -15,10 +38,10 @@ public class CartaoDTO {
 		this.numCartao = numCartao;
 	}
 	public int getCVV() {
-		return CVV;
+		return cvv;
 	}
-	public void setCVV(int cVV) {
-		CVV = cVV;
+	public void setCVV(int cvv) {
+		this.cvv = cvv;
 	}
 	public Date getValidade() {
 		return validade;
@@ -33,17 +56,24 @@ public class CartaoDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Cartao [numCartao=");
+		builder.append("CartaoDTO [idCartao=");
+		builder.append(idCartao);
+		builder.append(", numCartao=");
 		builder.append(numCartao);
-		builder.append(", CVV=");
-		builder.append(CVV);
+		builder.append(", tipo=");
+		builder.append(tipo);
+		builder.append(", cvv=");
+		builder.append(cvv);
 		builder.append(", validade=");
 		builder.append(validade);
-		builder.append(", toString()=");
-		builder.append(super.toString());
+		builder.append(", conta=");
+		builder.append(conta);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
+	
 	
 	
 }

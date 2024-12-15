@@ -1,5 +1,6 @@
 package com.classes.DTO;
 
+
 public class UsuarioDTO {
 
 	private int idUsuario;

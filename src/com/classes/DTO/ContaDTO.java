@@ -10,7 +10,7 @@ public class ContaDTO {
 	private int agencia;
 	protected UsuarioDTO usuario;
 	protected List<TransferenciaDTO> Tranferencias;
-	protected CartaoDTO cartao;
+	protected List<CartaoDTO> cartao;
 	
 	public ContaDTO() {
 		this.saldo = 0;
@@ -23,6 +23,7 @@ public class ContaDTO {
 		this.agencia = agencia;
 		this.usuario = usuario;
 		this.Tranferencias = new ArrayList<>();
+		this.cartao = new ArrayList<>();
 	}
 	
 	public double getSaldo() {
@@ -54,6 +55,9 @@ public class ContaDTO {
 		this.Tranferencias.add(transferencia);
 	}
 	
+	public void addCartao(CartaoDTO cartao) { // Olhar isso pois vai ter que colocar no banco de dados
+		this.cartao.add(cartao);
+	}
 	
 	@Override
 	public String toString() {

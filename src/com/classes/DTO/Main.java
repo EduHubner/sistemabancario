@@ -20,6 +20,12 @@ public class Main {
 		
 		System.out.println(conta2);
 		
+		//PagamentoDTO pag = new PagamentoDTO(2);
+		
+		//System.out.println(pag.getTipo());
+
+		
+		
 		
 		
 		/*TransferenciaDTO trandas = new TransferenciaDTO(1000);
@@ -32,9 +38,9 @@ public class Main {
 		System.out.println(conta1);
 		System.out.println(conta2);
 		
-		System.out.println("\nTranferencias da Conta 1: \n" + conta1.Tranferencias);
+		System.out.println("\nTranferencias da Conta 1: \n" + conta1.Tranferencias);*/
 		
-		System.out.println(t2.getIdTransferencia());*/
+
 		
 	}
 

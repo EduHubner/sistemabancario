@@ -1,23 +1,24 @@
 package com.classes.DTO;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class TransferenciaDTO {
 
 	private int idTransferencia;
-	private LocalDate data;
+	private Date data;
 	private double valor;
 	private ContaDTO contaPaga;
 	private ContaDTO contaRecebe;
 	
 	public TransferenciaDTO() {
-		this.idTransferencia = (int) Math.random();
-		this.data = LocalDate.now();
+		LocalDate localDate = LocalDate.now();
+        this.data = Date.valueOf(localDate);
 	}
 	
 	public TransferenciaDTO(double valor, ContaDTO contaPaga, ContaDTO contaRecebe) {
-		this.idTransferencia = (int) Math.random();
-		this.data = LocalDate.now();
+		LocalDate localDate = LocalDate.now();
+        this.data = Date.valueOf(localDate);
 		this.valor = valor;
 		this.contaPaga = contaPaga;
 		this.contaRecebe = contaRecebe;
@@ -42,10 +43,10 @@ public class TransferenciaDTO {
 	public void setIdTransferencia(int idTransferencia) {
 		this.idTransferencia = idTransferencia;
 	}
-	public LocalDate getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(LocalDate data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 	public double getValor() {
