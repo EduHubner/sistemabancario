@@ -3,6 +3,7 @@ package com.classes.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +18,22 @@ public class UsuarioDAO {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "INSERT INTO " + NOMEDATABELA + " (nome, cpf) VALUES (?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, usuario.getNome());
 			ps.setString(2, usuario.getCpf());
-			ps.executeUpdate();
+			
+			int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    usuario.setIdUsuario(rs.getInt(1));
+                    System.out.println("ID do novo usuário: " + usuario.getIdUsuario());
+                }
+            }
 			ps.close();
 			conn.close();
 			return true;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -60,7 +70,7 @@ public class UsuarioDAO {
 			return false;
 		}
 	}
-	public UsuarioDTO procurarPorCodigo(UsuarioDTO usuario) {
+	public UsuarioDTO procurarPorIdUsuario(UsuarioDTO usuario) {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE idUsuario = ?;";
@@ -140,9 +150,9 @@ public class UsuarioDAO {
 	public boolean existe(UsuarioDTO usuario) {
 		try {
 			Connection conn = Conexao.conectar();
-			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+			String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE idUsuario = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, usuario.getCpf());
+			ps.setInt(1, usuario.getIdUsuario());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				ps.close();

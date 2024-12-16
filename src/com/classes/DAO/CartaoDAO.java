@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,21 @@ public class CartaoDAO {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "INSERT INTO " + NOMEDATABELA + " (numCartao, cvv, validade, conta, tipo) VALUES (?, ?, ?, ?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, cartao.getNumCartao());
 			ps.setInt(2, cartao.getCVV());
 			ps.setDate(3, (Date) cartao.getValidade());
 			ps.setInt(4, cartao.getConta().getNumConta());
 			ps.setString(5, cartao.getTipo());
-			ps.executeUpdate();
+			
+			int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    cartao.setIdCartao(rs.getInt(1));
+                    System.out.println("ID do novo cartao: " + cartao.getIdCartao());
+                }
+            }
 			ps.close();
 			conn.close();
 			return true;

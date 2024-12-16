@@ -3,6 +3,7 @@ package com.classes.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,19 @@ public class PagamentoDAO {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "INSERT INTO " + NOMEDATABELA + " (tipo, transferenciaId, numContaPagante) VALUES (?, ?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, pagamento.getTipo());
 			ps.setInt(2, pagamento.getTransferencia().getIdTransferencia());
 			ps.setInt(3, pagamento.getTransferencia().getContaPaga().getNumConta());
-			ps.executeUpdate();
+
+			int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    pagamento.setIdPagamento(rs.getInt(1));
+                    System.out.println("ID do novo pagamento: " + pagamento.getIdPagamento());
+                }
+            }
 			ps.close();
 			conn.close();
 			return true;

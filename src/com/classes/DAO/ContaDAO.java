@@ -22,7 +22,7 @@ public class ContaDAO {
 			ps.setDouble(2, conta.getSaldo());
 			ps.setInt(3, conta.getAgencia());
 			ps.setString(4, conta.getUsuario().getNome());
-			ps.setInt(4, conta.getUsuario().getIdUsuario());
+			ps.setInt(5, conta.getUsuario().getIdUsuario());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();

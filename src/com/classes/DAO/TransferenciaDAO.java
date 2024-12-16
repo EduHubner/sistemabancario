@@ -3,6 +3,7 @@ package com.classes.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +18,20 @@ public class TransferenciaDAO {
 		try {
 			Connection conn = Conexao.conectar();
 			String sql = "INSERT INTO " + NOMEDATABELA + " (valor, dataTransferencia, contaPaga, contaRecebe) VALUES (?, ?, ?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setDouble(1, transferencia.getValor());
-			ps.setDate(2, transferencia.getData()); //ver para mudar a variável da DATA
+			ps.setDate(2, transferencia.getData());
 			ps.setInt(3, transferencia.getContaPaga().getNumConta());
 			ps.setInt(4, transferencia.getContaRecebe().getNumConta());
-			ps.executeUpdate();
+			
+			int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    transferencia.setIdTransferencia(rs.getInt(1));
+                    System.out.println("ID do novo Transferencia: " + transferencia.getIdTransferencia());
+                }
+            }
 			ps.close();
 			conn.close();
 			return true;
