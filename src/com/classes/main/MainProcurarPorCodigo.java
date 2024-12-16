@@ -3,16 +3,15 @@
 import com.classes.BO.MarcaBO;
 import com.classes.DTO.Marca;
 
-public class MainProcurarPorDescricao {
+public class MainProcurarPorCodigo {
 
 	public static void main(String[] args) {
-
-		// Teste Procurar por Descricao
-		// retorna o primeiro encontrado
+			
+		// Teste Procurar por Codigo
 		MarcaBO marcaBO = new MarcaBO();
-		Marca marca = new Marca("Android");
-		marca = marcaBO.procurarPorDescricao(marca);
+		Marca marca = new Marca(1,"");
+		marca = marcaBO.procurarPorCodigo(marca);
 		System.out.println(marca);
-
+		
 	}
 }*/
