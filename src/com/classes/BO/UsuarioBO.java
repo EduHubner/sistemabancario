@@ -22,9 +22,9 @@ public class UsuarioBO {
     	UsuarioDAO usuarioDAO = new UsuarioDAO();
         return usuarioDAO.excluir(usuario);
     }
-    public UsuarioDTO procurarPorCodigo(UsuarioDTO usuario){
+    public UsuarioDTO procurarPorIdUsuario(UsuarioDTO usuario){
     	UsuarioDAO usuarioDAO = new UsuarioDAO();
-        return usuarioDAO.procurarPorCodigo(usuario);
+        return usuarioDAO.procurarPorIdUsuario(usuario);
     }
     public UsuarioDTO procurarPorNome(UsuarioDTO usuario){
     	UsuarioDAO usuarioDAO = new UsuarioDAO();
