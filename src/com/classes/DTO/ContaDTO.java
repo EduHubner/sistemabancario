@@ -3,6 +3,8 @@ package com.classes.DTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.classes.BO.UsuarioBO;
+
 public class ContaDTO {
 	
 	private double saldo;
@@ -17,11 +19,18 @@ public class ContaDTO {
 		this.Tranferencias = new ArrayList<>();
 	}
 	
+	public ContaDTO(int numConta) {
+		this.numConta = numConta;
+
+	}
+	
 	public ContaDTO(int numConta, int agencia, UsuarioDTO usuario) {
 		this.saldo = 0;
+		UsuarioBO UsuarioBO = new UsuarioBO();
+		UsuarioBO.procurarPorIdUsuario(usuario);
 		this.numConta = numConta;
 		this.agencia = agencia;
-		this.usuario = usuario;
+		this.usuario = UsuarioBO.procurarPorIdUsuario(usuario);
 		this.Tranferencias = new ArrayList<>();
 		this.cartao = new ArrayList<>();
 	}

@@ -3,6 +3,8 @@ package com.classes.DTO;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import com.classes.BO.ContaBO;
+
 public class TransferenciaDTO {
 
 	private int idTransferencia;
@@ -22,6 +24,8 @@ public class TransferenciaDTO {
 		this.valor = valor;
 		this.contaPaga = contaPaga;
 		this.contaRecebe = contaRecebe;
+		
+		
 		
 	}
 	
@@ -60,8 +64,12 @@ public class TransferenciaDTO {
 		
 		this.contaPaga.setSaldo(contaPaga.getSaldo() - this.valor);
 		this.contaRecebe.setSaldo(contaRecebe.getSaldo() + this.valor);
-		this.contaPaga.addTransferencia(this);
-		this.contaRecebe.addTransferencia(this);
+		/*this.contaPaga.addTransferencia(this);
+		this.contaRecebe.addTransferencia(this);*/
+		
+		ContaBO ContaBO = new ContaBO();
+		ContaBO.alterarSaldo(this.contaPaga);
+		ContaBO.alterarSaldo(this.contaRecebe);
 
 	
 	}

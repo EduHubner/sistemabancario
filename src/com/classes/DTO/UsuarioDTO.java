@@ -6,6 +6,7 @@ public class UsuarioDTO {
 	private int idUsuario;
 	private String nome;
 	private String cpf;
+
 	
 	public UsuarioDTO() {
 		
@@ -16,10 +17,8 @@ public class UsuarioDTO {
 		this.cpf = cpf;
 	}
 	
-	public UsuarioDTO(int idUsuario, String nome, String cpf) {
+	public UsuarioDTO(int idUsuario) {
 		this.idUsuario = idUsuario;
-		this.nome = nome;
-		this.cpf = cpf;
 	}
 	
 	public int getIdUsuario() {

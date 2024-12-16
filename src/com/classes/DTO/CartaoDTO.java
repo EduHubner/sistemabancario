@@ -1,6 +1,7 @@
 package com.classes.DTO;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class CartaoDTO {
 
@@ -11,7 +12,19 @@ public class CartaoDTO {
 	private Date validade;
 	protected ContaDTO conta;
 	
+	public CartaoDTO () {
+		
+	}
 	
+	public CartaoDTO (int numCartao, String tipo, int cvv, ContaDTO conta) {
+		this.numCartao = numCartao;
+		this.tipo = tipo;
+		this.cvv = cvv;
+		LocalDate localDate = LocalDate.now();
+        this.validade = Date.valueOf(localDate);
+        this.conta = conta;
+        
+	}
 	
 	public String getTipo() {
 		return tipo;
