@@ -5,7 +5,7 @@ import java.sql.Connection;
 
 public class Conexao {
 
-	final static String NOME_DO_BANCO = "poo1";
+	final static String NOME_DO_BANCO = "teste";
     public static Connection conectar() {
     	try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
